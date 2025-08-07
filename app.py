@@ -21,8 +21,8 @@ if uploaded_file:
     st.markdown("### Step-by-step Processing")
 
     if st.button("1. Clean Data"):
-        st.write("Drop irrelevant columns like ID, date, lat, and long.")
-        df = df.drop(['id', 'date', 'lat', 'long'], axis=1)
+        st.write("Drop irrelevant columns like ID, lat, and long. Date is also removed to avoid string-to-float errors.")
+        df = df.drop(['id', 'date', 'lat', 'long'], axis=1, errors='ignore')
         df['zipcode'] = df['zipcode'].astype(str)
         st.write("Cleaned Data Sample:", df.head())
 
